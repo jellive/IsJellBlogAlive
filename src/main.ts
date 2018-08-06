@@ -1,31 +1,13 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 
-let win: BrowserWindow;
+let onlineStatusWindow: BrowserWindow
 
-function createWindow() {
-  // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600 });
+app.on('ready', () => {
+  onlineStatusWindow = new BrowserWindow({ width: 800, height: 600, show: true})
+  onlineStatusWindow.loadURL(`file://${process.cwd()}/src/online-status.html`)
+})
 
-  // load index.html
-  win.loadFile("index.html");
-
-  win.webContents.openDevTools();
-
-  win.on("closed", () => {
-    win = null;
-  });
-}
-
-app.on("ready", createWindow);
-
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-});
-
-app.on("activate", () => {
-  if (win === null) {
-    createWindow();
-  }
-});
+// ipcMain.on('online-status-changed', (event: any, status: any) => {
+//   window.alert(`${typeof event}, ${typeof status}`)
+//   console.log(status)
+// })

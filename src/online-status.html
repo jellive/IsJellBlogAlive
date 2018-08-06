@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <p>지금 상태는..!</p>
+  </br>
+  <p id="status"></p>
+  <script>
+    // const {
+    //   ipcRenderer
+    // } = require('electron')
+    // const updateOnlineStatus = () => {
+    //   ipcRenderer.send('online-status-changed', navigator.onLine ? 'online' : 'offline')
+    // }
+
+    // window.addEventListener('online', updateOnlineStatus)
+    // window.addEventListener('offline', updateOnlineStatus)
+
+    // updateOnlineStatus()
+    document.addEventListener("DOMContentLoaded", () => {
+      // alert('start!')
+      let xhttp = new XMLHttpRequest()
+      xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          document.getElementById('status').innerHTML = 'online'
+        } else {
+          document.getElementById('status').innerHTML = 'offline'
+        }
+      }
+      xhttp.open("GET", "https://blog.jell.kr")
+      xhttp.send()
+    })
+  </script>
+</body>
+
+</html>
