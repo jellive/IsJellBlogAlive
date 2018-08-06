@@ -1,0 +1,21 @@
+{
+  "name": "IsJellBlogAlive",
+  "version": "0.0.1",
+  "description": "check status Jell's blog (https://blog.jell.kr).",
+  "main": "main.ts",
+  "author": "Jell",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "yarn build && electron ./dist/main.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "electron": "^2.0.6",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  }
+}
